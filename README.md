@@ -24,7 +24,7 @@ React Admin has a great guesser component that allows us to just push our data t
 ### [Nexus js](https://nexus.js.org/) to generate typespcript types
 We can use the nexus [sdl converter](https://github.com/prisma-labs/nexus/blob/develop/src/sdlConverter.ts) that they built for the website to create typescript types for broader use in the codebase. 
 
-### Pushing to postman
+### [Pushing to postman](https://docs.api.getpostman.com/?version=latest#99810ef3-3cc0-a6cc-06f5-d8e2ae9d84e4)
 This involves two steps 1. [create a github action for it](https://github.com/agentlewis/webhook-action) and 2. [use the graphql to postman](https://github.com/postmanlabs/graphql-to-postman) code to convert our sdl to a Postman Collection V2 type.
 
 
