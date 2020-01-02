@@ -5,7 +5,9 @@ Create and Edit graphql schemas in react-admin and convert these to typescript i
 
 ## Tech stack
 ### [Firebase Firestore Database](https://firebase.google.com/products/firestore/) and [react-admin-provider](https://github.com/benwinding/react-admin-firebase)
-Firestore provides us with a realtime solution that has no schema opinions on the data that is added to it. This means the schema can be held by the front end making it perfect for MetaAdmin as we can then develop the schemas in react admin and immediately start pushing data to firestore.
+Firestore provides us with a realtime solution that has no schema opinions on the data that is added to it. This means the schema can be held by the front end making it perfect for MetaAdmin as we can then develop the schemas in react admin and immediately start pushing data to firestore. 
+
+*NOTE: An interesting side effect/opportunity of this could be to version our schemas, essentially allowing us to drop or add fields to the schema and then develop rendering components for the versions. This opens up a can of worms - but is an interesting tool for lager apps that have reached a point in there life cycle that they need to change significantly but want to maintain legacy support.*
 
 ### [Graphqljs](https://graphql.org/graphql-js) and [graphql-compose](https://graphql-compose.github.io/docs/intro/quick-start.html)
 We need to standardise into a graphql Schema Defined Language (SDL) schema so we can convert it to typescript and send it to postman. Graphqljs has a convenient [graphql-compose-json](https://graphql-compose.github.io/docs/plugins/plugin-json.html) for converting api responses into sdl objects, we will use this to convert the react admin form entered into a SDL. As a fallback we could use [printSchema](https://graphql.org/graphql-js/utilities/#printschema).
