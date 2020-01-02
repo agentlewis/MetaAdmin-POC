@@ -41,6 +41,8 @@ This involves two steps 1. [create a github action for it](https://github.com/ag
 # OLD README: Get started
 An example project for the [react-admin-firebase](https://github.com/benwinding/react-admin-firebase) package.
 
+Be sure you have created a new empty firestore database in your firebase project! Otherwise the below config wont work.
+
 You need to add the private Firebase connection file: `src/FIREBASE_CONFIG.js` with the following format from firebase:
 
 ``` js
