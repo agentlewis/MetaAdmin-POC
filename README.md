@@ -22,7 +22,7 @@ We will need to generate the fake data in the file - this may be done with the o
 React Admin has a great guesser component that allows us to just push our data through and render it - ideally we will generate this once a schema form is submitted, failding that the dev can start with this and we can have a code snippet to get started with. Given we are controlling the creation code we can guarantee that this will work with the [guesser code](https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/inference/InferredElement.ts) and its [assertions](https://github.com/marmelab/react-admin/blob/master/packages/ra-core/src/inference/assertions.ts). We know that this is not something that can be pushed to production - but it will be a great starting place for any new top level objects we create. 
 
 ### [Nexus js](https://nexus.js.org/) to generate typespcript types
-We can use the nexus [sdl converter](https://github.com/prisma-labs/nexus/blob/develop/src/sdlConverter.ts) that they built for the website to create typescript types for broader use in the codebase. 
+We can use the nexus [sdl converter](https://github.com/prisma-labs/nexus/blob/develop/src/sdlConverter.ts) that they built for the website to create nexus types and then use the normal nexus command to generate typescript types (and sdls again) for broader use in the codebase. 
 
 ### [Pushing to postman](https://docs.api.getpostman.com/?version=latest#99810ef3-3cc0-a6cc-06f5-d8e2ae9d84e4)
 This involves two steps 1. [create a github action for it](https://github.com/agentlewis/webhook-action) and 2. [use the graphql to postman](https://github.com/postmanlabs/graphql-to-postman) code to convert our sdl to a Postman Collection V2 type.
