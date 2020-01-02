@@ -8,7 +8,6 @@ import {
   Create,
   Edit,
   Filter,
-  DisabledInput,
   SimpleShowLayout,
   SimpleForm,
   TextField,
@@ -67,7 +66,7 @@ export const PostCreate = (props: any) => (
 export const PostEdit = (props: any) => (
   <Edit {...props}>
     <SimpleForm>
-      <DisabledInput source="id" />
+      <TextInput disabled source="id" />
       <TextInput source="title" />
       <RichTextInput source="body" />
       <SelectInput
