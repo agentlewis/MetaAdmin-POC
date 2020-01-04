@@ -1,28 +1,50 @@
 import React from 'react'
 import { Field } from 'react-final-form'
-import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles';
 import Textarea from '../Textarea'
 
-export default ({ question }) => (
-  <Row>
-    <label>{question.text}</label>
-    <Field
+type LongTextQuestionProps = {
+ question: Question
+}
+
+//DL TODO refactor out primitive types
+type Question = {
+  placeholder?: string,
+  text: string,
+  key: string,
+  answers: Answer[]
+}
+
+type Answer = {
+  value: string,
+  text: string
+}
+
+const LongTextQuestion: React.FunctionComponent<LongTextQuestionProps> = ({ question }) => (
+  <div className="row">
+    <label className="label">{question.text}</label>
+    <Field 
+      className="textarea"
       name={question.key}
       component={Textarea}
       placeholder={question.placeholder}
     />
-  </Row>
+  </div>
 )
 
-const Row = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  label {
-    margin-bottom: 15px;
+const styles: any = {
+  row: {
+    display: 'flex',
+    flexFlow: 'column nowrap'
+  },
+  label: {
+    marginBottom: '15px'
+  },
+  textarea: {
+    border: '1px solid #ccc',
+    minHeight: '90px',
+    padding: '8px'
   }
-  textarea {
-    border: 1px solid #ccc;
-    min-height: 90px;
-    padding: 8px;
-  }
-`
+}
+
+export default withStyles(styles)(LongTextQuestion);

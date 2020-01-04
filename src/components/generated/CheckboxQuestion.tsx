@@ -1,23 +1,35 @@
 import React from 'react'
 import { Field } from 'react-final-form'
-import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles';
 
-export default ({ question }) => (
-  <Row>
+type CheckboxQuestionProps = {
+  question: {
+    text: string,
+    key: string
+  }
+}
+
+const CheckboxQuestion: React.FunctionComponent<CheckboxQuestionProps> = ({ question }) => (
+  <label className="row">
     <span>{question.text}</span>
     <Field name={question.key} component="input" type="checkbox" />
-  </Row>
+  </label>
 )
 
-const Row = styled.label`
-  display: flex;
-  flex-flow: row nowrap;
-  span {
-    width: 150px;
-    margin-right: 15px;
+const styles: any = {
+  row: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    span: {
+      width: '150px',
+      marginRight: '15px'
+    },
+    input: {
+      position: 'relative',
+      top: '5px'
+    }
   }
-  input {
-    position: relative;
-    top: 5px;
-  }
-`
+}
+
+export default withStyles(styles)(CheckboxQuestion);
+

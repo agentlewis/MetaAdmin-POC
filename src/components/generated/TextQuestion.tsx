@@ -1,9 +1,26 @@
 import React from 'react'
 import { Field } from 'react-final-form'
-import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles';
 
-export default ({ question }) => (
-  <Row>
+type TextQuestionProps = {
+ question: Question
+}
+
+//DL TODO refactor out primitive types
+type Question = {
+  placeholder?: string,
+  text: string,
+  key: string,
+  answers: Answer[]
+}
+
+type Answer = {
+  value: string,
+  text: string
+}
+
+const TextQuestion: React.FunctionComponent<TextQuestionProps> = ({ question }) => (
+  <div className="row">
     <label>{question.text}</label>
     <Field
       name={question.key}
@@ -11,18 +28,22 @@ export default ({ question }) => (
       type="text"
       placeholder={question.placeholder}
     />
-  </Row>
+  </div>
 )
 
-const Row = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  label {
-    width: 150px;
-    margin-right: 15px;
-    line-height: 32px;
+const styles: any = {
+  row: {
+    display: 'flex',
+    flexFlow: 'column nowrap'
+  },
+  label: {
+    width: '150px',
+    marginRight: '15px',
+    lineHeight: '32px'
+  },
+  input: {
+    padding: '5px 8px'
   }
-  input {
-    padding: 5px 8px;
-  }
-`
+}
+
+export default withStyles(styles)(TextQuestion);

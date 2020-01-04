@@ -1,9 +1,26 @@
 import React from 'react'
 import { Field } from 'react-final-form'
-import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles';
 
-export default ({ question }) => (
-  <Row>
+type OptionGroupProps = {
+ question: Question
+}
+
+//DL TODO refactor out primitive types
+type Question = {
+  placeholder?: string,
+  text: string,
+  key: string,
+  answers: Answer[]
+}
+
+type Answer = {
+  value: string,
+  text: string
+}
+
+const OptionGroup: React.FunctionComponent<OptionGroupProps> = ({ question }) => (
+  <div className="row">
     <label>{question.text}</label>
     <div>
       {question.answers &&
@@ -24,21 +41,27 @@ export default ({ question }) => (
             )
         )}
     </div>
-  </Row>
+  </div>
 )
 
-const Row = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  & > label {
-    width: 150px;
-    margin-right: 15px;
-  }
-  & > div > label {
-    display: block;
-    margin: 5px 0;
-    & > input {
-      margin-right: 10px;
+const styles: any = {
+  row: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    label: {
+      width: '150px',
+      marginRight: '15px'
+    },
+    div: {
+      label: {
+        display: 'block',
+        margin: '5px 0',
+        input: {
+          marginRight: '10px'
+        }
+      }
     }
   }
-`
+}
+
+export default withStyles(styles)(OptionGroup);

@@ -1,14 +1,30 @@
 import React from 'react'
 import { Field } from 'react-final-form'
-import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles';
 import Select from '../Select'
 
-export default ({ question }) => (
-  <Row>
+type DropDownQuestionProps = {
+ question: Question
+}
+
+//DL TODO refactor out primitive types
+type Question = {
+  text: string,
+  key: string,
+  answers: Answer[]
+}
+
+type Answer = {
+  value: string,
+  text: string
+}
+
+const DropDownQuestion: React.FunctionComponent<DropDownQuestionProps> = ({ question }) => (
+  <div className="row">
     <label>{question.text}</label>
     <Field
       name={question.key}
-      component={Selector}
+      component={Select}
       options={
         question.answers
           ? question.answers.map(answer => ({
@@ -19,18 +35,21 @@ export default ({ question }) => (
       }
       isSearchable={false}
     />
-  </Row>
+  </div>
 )
 
-const Row = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  & > label {
-    width: 150px;
-    margin-right: 15px;
+const styles: any = {
+  row: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    label: {
+      width: '150px',
+      marginRight: '15px'
+    }
+  },
+  select: {
+    flex: 1
   }
-`
+}
 
-const Selector = styled(Select)`
-  flex: 1;
-`
+export default withStyles(styles)(DropDownQuestion);
