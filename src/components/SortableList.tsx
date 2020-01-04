@@ -1,13 +1,31 @@
-import React from 'react'
-import { SortableContainer } from 'react-sortable-hoc'
+import React, { Component, ReactNode } from 'react';
+import {
+  SortableContainer
+} from 'react-sortable-hoc';
+import { List } from '@material-ui/core';
 
-@SortableContainer
-export default class SortableList extends React.Component {
-  onSortEnd = info => {
+const SortableContainerWrapper = SortableContainer(({ children }: { children: ReactNode }) => {
+  return <List>{children}</List>;
+})
+
+type SrotableListProps = {
+  onSortEnd: Function,
+  children: ReactNode
+}
+
+class SortableList extends Component<SrotableListProps, {}> {
+  private onSortEnd = (info: any) => {
     console.info('sort end', info)
     this.props.onSortEnd(info)
   }
+
   render() {
-    return <div>{this.props.children}</div>
+    return (
+      <SortableContainerWrapper onSortEnd={this.onSortEnd} useDragHandle>
+        {this.props.children}
+      </SortableContainerWrapper>
+    );
   }
 }
+
+export default SortableList;
