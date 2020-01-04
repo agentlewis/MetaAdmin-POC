@@ -1,13 +1,10 @@
 import React from 'react'
-import RenderCount from './RenderCount'
 import { FORM_ERROR } from 'final-form'
 import { Form, Field } from 'react-final-form'
 import showResults from './showResults'
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
-const validate = values => {
-  const errors = {}
+const validate = (values: any) => {
+  const errors: any = {}
   if (!values.firstName) {
     errors.firstName = 'Required'
   } else if (values.firstName.length > 4) {
@@ -15,8 +12,8 @@ const validate = values => {
   }
   return errors
 }
-const onSubmit = values => {
-  const errors = {}
+const onSubmit = (values: any) => {
+  const errors: any = {}
   if (values.firstName && values.firstName.length < 2) {
     errors[FORM_ERROR] = 'TOO SHORT'
   }
@@ -27,10 +24,16 @@ const onSubmit = values => {
   }
 }
 
-const renderInput = ({ meta, input, label }) =>
+type RenderInputProps = {
+  meta: any,
+  input: any,
+  label: string
+}
+
+const renderInput: React.FunctionComponent<RenderInputProps> = ({ meta, input, label }) =>
   <div>
     <label>
-      {label} <RenderCount />
+      {label}
     </label>
     <input {...input} placeholder={label} />
     {meta.touched &&
@@ -47,7 +50,6 @@ const DemoForm = () =>
     subscription={{ pristine: true, valid: true }}
     render={({ handleSubmit, ...rest }) =>
       <form onSubmit={handleSubmit}>
-        <RenderCount />
         <Field name="firstName" render={renderInput} label="First Name" />
         <Field name="lastName" render={renderInput} label="Last Name" />
         <button type="submit">Submit</button>
