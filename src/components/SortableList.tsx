@@ -1,31 +1,31 @@
-import React, { Component, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import {
   SortableContainer
 } from 'react-sortable-hoc';
 import { List } from '@material-ui/core';
 
+// This wraps the react element with the react sortable HOC.
 const SortableContainerWrapper = SortableContainer(({ children }: { children: ReactNode }) => {
   return <List>{children}</List>;
 })
 
+// Define the expected props
 type SrotableListProps = {
   onSortEnd: Function,
   children: ReactNode
 }
 
-class SortableList extends Component<SrotableListProps, {}> {
-  private onSortEnd = (info: any) => {
+// Define the functional component 
+const SortableList: FunctionComponent<SrotableListProps> = ({onSortEnd, children}) => {
+  const onSortEndWrap = (info: any) => {
     console.info('sort end', info)
-    this.props.onSortEnd(info)
+    onSortEnd(info)
   }
-
-  render() {
-    return (
-      <SortableContainerWrapper onSortEnd={this.onSortEnd} useDragHandle>
-        {this.props.children}
-      </SortableContainerWrapper>
-    );
-  }
+  return (
+    <SortableContainerWrapper onSortEnd={onSortEndWrap} useDragHandle>
+      {children}
+    </SortableContainerWrapper>
+  );
 }
 
 export default SortableList;
