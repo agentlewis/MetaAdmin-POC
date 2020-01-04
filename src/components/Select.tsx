@@ -2,14 +2,14 @@ import React from 'react'
 import MuiSelect from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-type selectProps = {
+type SelectProps = {
   input: any,
   options: any[],
   name: string,
   style: any
 }
 
-const Select: React.FunctionComponent<selectProps>  = ({ input, ...rest }) => (
+const Select: React.FunctionComponent<SelectProps>  = ({ input, ...rest }) => (
   <MuiSelect
     style={rest.style}
     labelId={rest.name}

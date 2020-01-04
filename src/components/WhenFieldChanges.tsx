@@ -1,16 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'react-final-form'
+//@ts-ignore
 import { OnChange } from 'react-final-form-listeners'
 
-const WhenFieldChanges = ({ field, becomes, set, to }) => (
+type FieldCangesProps = {
+  field: string,
+  becomes?: any,
+  set: string,
+  to?: any
+}
+
+const WhenFieldChanges: React.FunctionComponent<FieldCangesProps>  = ({ field, becomes, set, to }) => (
   <Field name={set} subscription={{}}>
     {(
       // No subscription. We only use Field to get to the change function
       { input: { onChange } }
     ) => (
       <OnChange name={field}>
-        {value => {
+        { (value: any) => {
           if (value === becomes) {
             onChange(to)
           }
@@ -19,11 +27,5 @@ const WhenFieldChanges = ({ field, becomes, set, to }) => (
     )}
   </Field>
 )
-WhenFieldChanges.propTypes = {
-  field: PropTypes.string.isRequired,
-  becomes: PropTypes.any,
-  set: PropTypes.string.isRequired,
-  to: PropTypes.any
-}
 
 export default WhenFieldChanges

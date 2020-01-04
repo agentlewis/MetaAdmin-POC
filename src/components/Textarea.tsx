@@ -1,4 +1,15 @@
 import React from 'react'
-import TextareaAutosize from 'react-textarea-autosize'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
-export default ({ input, ...rest }) => <TextareaAutosize {...input} {...rest} />
+type TextAreaProps = {
+  input: any
+}
+
+const TextArea: React.FunctionComponent<TextAreaProps>  = ({ input, ...rest }) => (
+  <TextareaAutosize
+    {...input}
+    {...rest} 
+  />
+)
+
+export default TextArea;

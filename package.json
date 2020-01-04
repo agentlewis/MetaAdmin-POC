@@ -26,6 +26,7 @@
     "react-admin-firebase": "^0.8.1",
     "react-dom": "^16.8.6",
     "react-final-form": "^6.3.3",
+    "react-final-form-listeners": "^1.0.2",
     "react-scripts": "2.1.8",
     "react-sortable-hoc": "^1.10.1",
     "typescript": "3.3.4000",
