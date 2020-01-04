@@ -1,20 +1,25 @@
 import React from 'react'
-import Icon from 'react-fontawesome'
-import styled from 'styled-components'
+import { withStyles } from '@material-ui/core/styles'
+import Github from '@material-ui/icons/GitHub';
 
-export default function GithubLink() {
+
+const GithubLink = () => {
   return (
-    <Link href="https://github.com/final-form/builder-demo" target="_blank">
-      <Icon name="github" />
-    </Link>
+    <a href="https://github.com/final-form/builder-demo" target="_blank">
+      <Github/>
+    </a>
   )
 }
 
-const Link = styled.a`
-  position: absolute;
-  top: 5px;
-  right: 15px;
-  font-size: 35px;
-  color: #333;
-  z-index: 10;
-`
+const styles: any = {
+  link: {
+    position: 'absolute',
+    top: '5px',
+    right: '15px',
+    fontSize: '35px',
+    color: '#333',
+    zIndex: 10
+  }
+}
+
+export default withStyles(styles)(GithubLink);
