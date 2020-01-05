@@ -22,7 +22,7 @@ const SortableList: FunctionComponent<SrotableListProps> = ({onSortEnd, children
     onSortEnd(info)
   }
   return (
-    <SortableContainerWrapper onSortEnd={onSortEndWrap} useDragHandle>
+    <SortableContainerWrapper onSortEnd={onSortEndWrap} useDragHandle lockAxis="y" >
       {children}
     </SortableContainerWrapper>
   );
