@@ -1,55 +1,56 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import { FieldArray } from 'react-final-form-arrays'
-import Icon from 'react-fontawesome'
-import styled from 'styled-components'
-import Button from '../styles/Button'
+import { withStyles } from '@material-ui/core/styles'
+import IconButton from '@material-ui/core/IconButton'
+import Add from '@material-ui/icons/Add'
 import Answer from './Answer'
 import SortableList from './SortableList'
 
-export default class Answers extends React.Component {
-  render() {
-    return (
-      <Container>
-        <FieldArray name={`${this.props.name}.answers`}>
-          {({ fields }) => (
-            <React.Fragment>
-              <SortableList
-                lockAxis="y"
-                useDragHandle
-                onSortEnd={({ oldIndex, newIndex }) =>
-                  fields.move(oldIndex, newIndex)
-                }
-              >
-                {fields.map((name, index) => (
-                  <Answer
-                    key={name}
-                    index={index}
-                    name={name}
-                    remove={() => fields.remove(index)}
-                  />
-                ))}
-              </SortableList>
-              <Buttons>
-                <Button secondary type="button" onClick={() => fields.push({})}>
-                  <Icon name="plus" /> Add Answer
-                </Button>
-              </Buttons>
-            </React.Fragment>
-          )}
-        </FieldArray>
-      </Container>
-    )
+type AnswersProps = {
+  name: string
+}
+
+const Answers: FunctionComponent<AnswersProps> = ({ name }) => (
+  <div className="container">
+    <FieldArray name={`${name}.answers`}>
+      {({ fields }) => (
+        <React.Fragment>
+          <SortableList
+            onSortEnd={( oldIndex: number, newIndex: number ) =>
+              fields.move(oldIndex, newIndex)
+            }
+          >
+            {fields.map((name, index) => (
+              <Answer
+                key={name}
+                index={index}
+                name={name}
+                remove={() => fields.remove(index)}
+              />
+            ))}
+          </SortableList>
+          <div className="buttonsWrapper">
+            <IconButton color='secondary' onClick={() => fields.push({})}>
+              <Add /> Add Answer
+            </IconButton>
+          </div>
+        </React.Fragment>
+      )}
+    </FieldArray>
+  </div>
+)
+
+const styles: any = {
+  container: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    margin: '10px 0',
+    paddingLeft: '20px'
+  },
+  buttonsWrapper: {
+    padding: '10px',
+    textAlign: 'center'
   }
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  margin: 10px 0;
-  padding-left: 20px;
-`
-
-const Buttons = styled.div`
-  padding: 10px;
-  text-align: center;
-`
+export default withStyles(styles)(Answers);
